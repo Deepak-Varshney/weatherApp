@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .weather-icon {
+            width: 150px;
+        }
+
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: transparent;
+            border-radius: 50%;
+            width: 4rem;
+            height: 4rem;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .card {
+            background: #FC5C7D;
+            background: -webkit-linear-gradient(to right, #6A82FB, #FC5C7D);
+            background: linear-gradient(to right, #6A82FB, #FC5C7D);
+            backdrop-filter: blur(10px);
+            height: auto;
+        }
+
+        .dropdown-menu {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 min-h-screen flex flex-col justify-between">
+    <!-- Header -->
+    <header class="py-4 mb-4 shadow-md text-center">
+        <h1 class="text-4xl font-bold text-white">Weather App</h1>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex items-center flex-col justify-center">
+        <!-- Location and Recent Search Buttons -->
+        <div class="w-full max-w-lg card shadow-xl rounded-3xl overflow-hidden p-8">
+            <!-- Location Button -->
+            <div class="mb-4">
+                <button id="currentLocationBtn"
+                    class="bg-gray-100 rounded-full h-14 w-full flex items-center justify-center cursor-pointer border-none focus:outline-none hover:bg-gray-300 text-black">
+                    Use Current Location
+                </button>
+            </div>
+
+            <!-- Dropdown Menu for Recent Searches -->
+            <div class="relative w-full mb-4">
+                <button id="dropdownBtn"
+                    class="bg-gray-200 text-gray-700 rounded-full py-2 px-4 flex items-center justify-between w-full">
+                    Recent Searches
+                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div id="dropdownMenu" class="absolute hidden bg-white shadow-lg mt-2 rounded-lg w-full z-10 dropdown-menu">
+                    <!-- Recent cities will be dynamically added here -->
+                </div>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="flex items-center mb-8">
+                <input type="text" name="cityName" id="cityName" placeholder="Enter City name" spellcheck="false"
+                    class="w-full bg-gray-100 text-gray-700 py-3 px-6 h-14 rounded-full text-lg border border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent mr-4">
+                <button id="searchBtn"
+                    class="bg-blue-500 rounded-full h-14 w-14 flex items-center justify-center cursor-pointer border-none focus:outline-none hover:bg-blue-600">
+                    <img src="images/search.png" alt="searchIcon" class="w-6">
+                </button>
+            </div>
+
+            <!-- Loading Spinner -->
+            <div class="flex justify-center hidden items-center h-32">
+                <div class="spinner" id="spinner"></div>
+            </div>
+
+            <!-- Weather Info -->
+            <div class="text-center hidden" id="weatherInfo">
+                <img src="images/rain.png" class="weather-icon mx-auto">
+                <h1 class="temp text-4xl font-semibold text-gray-800 mt-6">22°C</h1>
+                <h2 class="city text-xl font-light text-gray-600 mt-[-0.625rem]">New York</h2>
+            </div>
+
+            <!-- Details Section -->
+            <div class="flex items-center justify-between mt-8 px-4 hidden" id="detailsSection">
+                <div class="flex items-center text-left">
+                    <img src="images/humidity.png" class="w-10 mr-3">
+                    <div>
+                        <p class="humidity text-xl font-semibold text-gray-800">50%</p>
+                        <p class="text-gray-600">Humidity</p>
+                    </div>
+                </div>
+                <div class="flex items-center text-left">
+                    <img src="images/wind.png" class="w-10 mr-3">
+                    <div>
+                        <p class="wind text-xl font-semibold text-gray-800">51 km/h</p>
+                        <p class="text-gray-600">Wind Speed</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Extended Forecast Section -->
+            <div id="extendedForecast" class="hidden mt-12">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">5-Day Forecast</h2>
+                <div id="forecastContainer" class="flex flex-wrap gap-4 justify-between">
+                    <!-- Forecast data will be dynamically added here -->
+                </div>
+            </div>
+
+            <!-- No City Found Message -->
+            <div class="text-center hidden" id="noCityFound">
+                <p class="text-xl font-semibold text-gray-900">No city found</p>
+                <p class="text-gray-800 mt-2">Please check the city name and try again.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-4 text-center shadow-md">
+        <p class="text-white">© 2024 Weather App. All rights reserved. Made by <a
+                href="https://github.com/deepak-varshney" class="text-blue-300">Deepak Varshney</a> with &hearts;</p>
+    </footer>
+
+    <script src="script.js">
+        // JavaScript remains the same as provided
+    </script>
+</body>
+
+</html>
